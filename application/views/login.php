@@ -15,7 +15,7 @@
     <!-- Custom CSS -->
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
     <!-- color CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/colors/default.css" id="theme"  rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/colors/default.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,7 +32,8 @@
 <section id="wrapper" class="new-login-register">
     <div class="lg-info-panel">
         <div class="inner-panel">
-            <a href="javascript:void(0)" class="p-20 di"><img src="<?php echo base_url(); ?>assets/plugins/images/admin-logo.png"></a>
+            <a href="javascript:void(0)" class="p-20 di"><img
+                        src="<?php echo base_url(); ?>assets/plugins/images/admin-logo.png"></a>
             <div class="lg-content">
                 <h2>Welcome to</h2>
                 <h2>Telkom University Dormitory Information System</h2>
@@ -44,13 +45,11 @@
             <h3 class="box-title m-b-0">Sign In to Admin</h3>
             <small>Enter your details below</small>
             <?php $attribute = array(
-                    'class' => 'form-horizontal new-lg-form'
+                'class' => 'form-horizontal new-lg-form'
             );
-            
-
             echo $this->session->flashdata('errors');
 
-            echo form_open('login/check',$attribute);?>
+            echo form_open('login/check', $attribute); ?>
             <form class="form-horizontal new-lg-form" id="loginform" action="index.html">
                 <div class="form-group  m-t-20">
                     <div class="col-xs-12">
@@ -67,7 +66,9 @@
                 <div class="form-group">
                     <div class="form-group text-center m-t-20">
                         <div class="col-xs-12">
-                            <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light" type="submit">Log In</button>
+                            <button class="btn btn-info btn-lg btn-block btn-rounded text-uppercase waves-effect waves-light"
+                                    type="submit">Log In
+                            </button>
                         </div>
 
                     </div>

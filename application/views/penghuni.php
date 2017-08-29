@@ -1,178 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="row bg-title">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/plugins/images/favicon.png">
-    <title>My Dorm</title>
-    <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Menu CSS -->
-    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- toast CSS -->
-    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
-    <!-- morris CSS -->
-    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
-    <!-- chartist CSS -->
-    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
-    <!-- Calendar CSS -->
-    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/calendar/dist/fullcalendar.css" rel="stylesheet" />
-    <!-- animation CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/animate.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
-    <!-- color CSS -->
-    <link href="<?php echo base_url(); ?>assets/css/colors/megna-dark.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Penghuni</h4></div>
+    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i
+                    class="ti-settings text-white"></i></button>
+        <ol class="breadcrumb">
+            <li><a href="#">Dashboard</a>/Penghuni</li>
+        </ol>
+    </div>
 
-<body class="fix-header">
-<!-- ============================================================== -->
+</div>
 
-<!-- ============================================================== -->
-<!-- Wrapper -->
-<!-- ============================================================== -->
-<div id="wrapper">
-    <!-- ============================================================== -->
-    <!-- Topbar header - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <nav class="navbar navbar-default navbar-static-top m-b-0">
-        <div class="navbar-header">
-            <div class="top-left-part">
-                <!-- Logo -->
-                <a class="logo" href="index.html">
-                    <!-- Logo icon image, you can use font-icon also --><b>
-                        <!--This is dark logo icon--><img src="<?php echo base_url(); ?>assets/plugins/images/admin-logo.png" alt="home" class="dark-logo" /><!--This is light logo icon--><img src="<?php echo base_url(); ?>assets/plugins/images/admin-logo-dark.png" alt="home" class="light-logo" />
-                    </b>
-                    <!-- Logo text image you can use text also --><span class="hidden-xs">
-                        <!--This is dark logo text--><img src="<?php echo base_url(); ?>assets/plugins/images/admin-text.png" alt="home" class="dark-logo" /><!--This is light logo text--><img src="<?php echo base_url(); ?>assets/plugins/images/admin-text-dark.png" alt="home" class="light-logo" />
-                     </span> </a>
-            </div>
-            <!-- /Logo -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="white-box">
+            <h3 class="box-title">Penghuni Asrama</h3>
+            <td colspan="2">
+                <button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
+                        data-target="#add-contact">Tambah Penghuni
+                </button>
+            </td>
+            <div class="scrollable">
+                <div class="table-responsive">
+                    <table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list" data-page-size="10">
+                        <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>Kamar</th>
+                            <th>Jurusan</th>
+                            <th>Nomor HP</th>
+                            <th>ID LINE</th>
+                            <th>Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php 
+                        $i = 1;
+                        foreach ($penghuni as $obj) {
+                            echo "<tr>";
+                            echo "<td>".$i."</td>";
+                            echo "<td>".$obj->nim."</td>";
+                            echo "<td>".$obj->nama."</td>";
+                            echo "<td>".$obj->nomor."</td>";
+                            echo "<td>".$obj->jurusan."</td>";
+                            echo "<td>".$obj->nohp."</td>";
+                            echo "<td>".$obj->line."</td>";
+                            echo "<td> edit / delete </td>";
+                        echo "</tr>";
+                        $i++;
+                        }
 
-            <ul class="nav navbar-top-links navbar-right pull-right">
 
-                <li class="dropdown">
-                    <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img src="<?php echo base_url(); ?>assets/plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Asrama 12</b><span class="caret"></span> </a>
-                    <ul class="dropdown-menu dropdown-user animated flipInY">
-                        <li>
-                            <div class="dw-user-box">
-                                <div class="u-img"><img src="<?php echo base_url(); ?>assets/plugins/images/users/varun.jpg" alt="user" /></div>
-                                <div class="u-text">
-                                    <h4>Helpdesk</h4>
-                                    <p class="text-muted">helpdeks@telkomuniversity.ac.id</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                         ?>
+                        </tbody>
+                    </table>
+                            <div id="add-contact" class="modal fade in" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                ×
+                                            </button>
+                                            <h4 class="modal-title" id="myModalLabel">Tambah Penghuni</h4></div>
+                                        <form class="form-horizontal form-material" action="tambah" method="POST">
+                                        <div class="modal-body">
+                                                <div class="form-group">
+                                                    <div class="col-md-12 m-b-20">
+                                                        <input type="text" class="form-control" placeholder="NIM" name="nim" required="true">
+                                                    </div>
+                                                    <div class="col-md-12 m-b-20">
+                                                        <input type="text" class="form-control" placeholder="Nama" name="nama" required="true">
+                                                    </div>
+                                                    <div class="col-md-12 m-b-20">
+                                                        <input type="text" class="form-control" placeholder="Jurusan" name="jurusan" required="true">
+                                                    </div>
+                                                    <div class="col-md-12 m-b-20">
+                                                        <input type="text" class="form-control" placeholder="Nomor Kamar" name="nokamar" required="true">
+                                                    </div>
+                                                    <div class="col-md-12 m-b-20">
+                                                        <input type="text" class="form-control" placeholder="Nomor HP" name="nohp" required="true"></div>
+                                                    <div class="col-md-12 m-b-20">
+                                                        <input type="text" class="form-control" placeholder="ID LINE" name="idline" required="true">
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-info waves-effect">Submit
+                                            </button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
                             </div>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                        <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-        </div>
-        <!-- /.navbar-header -->
-        <!-- /.navbar-top-links -->
-        <!-- /.navbar-static-side -->
-    </nav>
-    <!-- End Top Navigation -->
-    <!-- ============================================================== -->
-    <!-- Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav slimscrollsidebar">
-            <div class="sidebar-head">
-                <h3><span class="fa-fw open-close"><i class="ti-close ti-menu"></i></span> <span class="hide-menu">Navigation</span></h3> </div>
-            <ul class="nav" id="side-menu">
-                <li> <a href="#" class="waves-effect"><i class="mdi mdi-av-timer fa-fw" data-icon="v"></i> <span class="hide-menu"> Dashboard <span class="fa arrow"></span></a>
-                </li>
-                <li> <a href="#" class="waves-effect"><i class="mdi mdi-table fa-fw"></i> <span class="hide-menu">Checkpoint<span class="fa arrow"></span></a>
-                </li>
-                <li> <a href="#" class="waves-effect"><i class="mdi mdi-chart-bar fa-fw"></i> <span class="hide-menu">Monitoring<span class="fa arrow"></span></span></a>
-                </li>
-                <li> <a href="#" class="waves-effect"><i class="mdi mdi-chart-bar fa-fw"></i> <span class="hide-menu">Penguni<span class="fa arrow"></span></span></a>
-                </li>
-            </ul>
+                        <br>
+                </div>
+            </div>
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Left Sidebar -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page Content -->
-    <!-- ============================================================== -->
-    <div id="page-wrapper">
-        <div class="container-fluid">
-            <div class="row bg-title">
-                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h4 class="page-title">Dashboard</h4> </div>
-                <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                    <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
-                    <ol class="breadcrumb">
-                        <li><a href="#">Dashboard</a></li>
-                    </ol>
-                </div>
-                <!-- /.col-lg-12 -->
-                <footer class="footer text-center"> 2017 &copy; Faishal Rachman </footer>
-            </div>
-            <!-- ============================================================== -->
-            <!-- End Page Content -->
-            <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Wrapper -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- All Jquery -->
-        <!-- ============================================================== -->
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="<?php echo base_url(); ?>assets/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- Menu Plugin JavaScript -->
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
-        <!--slimscroll JavaScript -->
-        <script src="<?php echo base_url(); ?>assets/js/jquery.slimscroll.js"></script>
-        <!--Wave Effects -->
-        <script src="<?php echo base_url(); ?>assets/js/waves.js"></script>
-        <!--Counter js -->
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/waypoints/lib/jquery.waypoints.js"></script>
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
-        <!--Morris JavaScript -->
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/raphael/raphael-min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/morrisjs/morris.js"></script>
-        <!-- chartist chart -->
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/chartist-js/dist/chartist.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-        <!-- Calendar JavaScript -->
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/moment/moment.js"></script>
-        <script src='<?php echo base_url(); ?>assets/plugins/bower_components/calendar/dist/fullcalendar.min.js'></script>
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/calendar/dist/cal-init.js"></script>
-        <!-- Custom Theme JavaScript -->
-        <script src="<?php echo base_url(); ?>assets/js/custom.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/js/dashboard1.js"></script>
-        <!-- Custom tab JavaScript -->
-        <script src="<?php echo base_url(); ?>assets/js/cbpFWTabs.js"></script>
-        <script type="text/javascript">
-            (function() {
-                [].slice.call(document.querySelectorAll('.sttabs')).forEach(function(el) {
-                    new CBPFWTabs(el);
-                });
-            })();
-        </script>
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
-        <!--Style Switcher -->
-        <script src="<?php echo base_url(); ?>assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-</body>
-
-</html>
+</div>

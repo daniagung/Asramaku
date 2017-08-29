@@ -7,31 +7,53 @@ class Transaksi_model extends CI_Model {
 
 	public function get()
 	{
-
+        $this->db->order_by("tgl", "asc");
 		$query = $this->db->get('report');
 		return $query->result();
 	}
-	// Add a new item
-	public function add($data)
-	{
-		$result = $this->db->insert('transaksi', $data);
-		return $result;
+	public function insert($nim,$status){
+		$this->db->where('nim', $nim);
+		$getmhs = $this->db->get('kamarmhs');
+		if ($getmhs->num_rows() == 1){
+			$datamhs = $getmhs->result();
+
+			$data = array(
+				'id_kamar' => $datamhs[0]->id_kamar,
+				'nim' => $datamhs[0]->nim,
+				'status' => $status
+				);
+            $this->db->insert('transaksi', $data);
+            if ($this->db->affected_rows() > 0)
+                return TRUE;
+            else
+                return FALSE;
+		}
+		else
+		{
+			return FALSE;
+		}
 	}
 
 	//Update one item
 	public function update($data)
 	{
 		$this->db->where('id', $data['id']);
-		$result = $this->db->update('transaksi', $data);
-		return $result;
+		$this->db->update('transaksi', $data);
+		if ($this->db->affected_rows() > 0)
+		return TRUE;
+		else
+		return FALSE;
 	}
 
 	//Delete one item
 	public function delete( $id = NULL )
 	{
 		$this->db->where('id', $data['id']);
-		$result = $this->db->delete('transaksi');
-		return $result;
+		$this->db->delete('transaksi');
+		if ($this->db->affected_rows() > 0)
+		return TRUE;
+		else
+		return FALSE;
 	}
 }
 
