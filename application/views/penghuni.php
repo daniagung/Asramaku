@@ -1,5 +1,19 @@
 <div class="row bg-title">
 
+    <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/datatables/jquery.dataTables.min.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet"
+          type="text/css"/>
+    <!-- Menu CSS -->
+    <link href="<?php echo base_url(); ?>assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css"
+          rel="stylesheet">
+    <!-- animation CSS -->
+    <link href="<?php echo base_url(); ?>assets/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="<?php echo base_url(); ?>assets/css/colors/megna-dark.css" id="theme" rel="stylesheet">
     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
         <h4 class="page-title">Penghuni</h4></div>
     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -23,7 +37,7 @@
             </td>
             <div class="scrollable">
                 <div class="table-responsive">
-                    <table id="demo-foo-addrow" class="table m-t-30 table-hover contact-list" data-page-size="10">
+                    <table id="example23" class="table table-striped" cellspacing="0" width="100%">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -48,7 +62,7 @@
                             echo "<td>".$obj->jurusan."</td>";
                             echo "<td>".$obj->nohp."</td>";
                             echo "<td>".$obj->line."</td>";
-                            echo "<td> edit / delete </td>";
+                            echo "<td> <button type=\"button\" name=\"$obj->nim\" class=\"btn btn-info btn-sm\">Edit</button> <button type=\"button\" class=\"btn btn-danger btn-sm\">Hapus</button></td>";
                         echo "</tr>";
                         $i++;
                         }
@@ -104,3 +118,75 @@
         </div>
     </div>
 </div>
+<!-- jQuery -->
+<script src="<?php echo base_url(); ?>assets/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Menu Plugin JavaScript -->
+<script src="<?php echo base_url(); ?>assets/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<!--slimscroll JavaScript -->
+<script src="js/jquery.slimscroll.js"></script>
+<!--Wave Effects -->
+<script src="js/waves.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="js/custom.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/bower_components/datatables/jquery.dataTables.min.js"></script>
+<!-- start - This is for export functionality only -->
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<!-- end - This is for export functionality only -->
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+        $(document).ready(function () {
+            var table = $('#example').DataTable({
+                "columnDefs": [{
+                    "visible": false,
+                    "targets": 2
+                }],
+                "order": [
+                    [2, 'asc']
+                ],
+                "displayLength": 25,
+                "drawCallback": function (settings) {
+                    var api = this.api();
+                    var rows = api.rows({
+                        page: 'current'
+                    }).nodes();
+                    var last = null;
+                    api.column(2, {
+                        page: 'current'
+                    }).data().each(function (group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+                            last = group;
+                        }
+                    });
+                }
+            });
+            // Order by the grouping
+            $('#example tbody').on('click', 'tr.group', function () {
+                var currentOrder = table.order()[0];
+                if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+                    table.order([2, 'desc']).draw();
+                } else {
+                    table.order([2, 'asc']).draw();
+                }
+            });
+        });
+    });
+    $('#example23').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+
+        ]
+    });
+</script>
+<!--Style Switcher -->
+<script src="<?php echo base_url(); ?>assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+

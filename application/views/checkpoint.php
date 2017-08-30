@@ -33,8 +33,7 @@
 <section id="wrapper" class="login-register">
     <div class="login-box">
         <div class="white-box">
-            <form class="form-horizontal form-material" action="checkpoint/check" method="POST">
-
+            <div class="form-horizontal form-material">
                 <div class="form-group">
                     <div class="col-xs-12 text-center">
                         <div class="user-thumb text-center"><img alt="thumbnail" class="img-circle" width="100"
@@ -43,30 +42,21 @@
                         </div>
                     </div>
                 </div>
-                <?php
-                if ($this->session->flashdata('error')){
-                    echo $this->session->flashdata('error');
-                }
-                if ($this->session->flashdata('success')){
-                    echo $this->session->flashdata('success');
-                }
-                ?>
-
                 <div class="form-group ">
                     <div class="col-xs-12">
-                        <input class="form-control text-center" type="text" name="nim" required="" placeholder="Masukkan NIM Anda">
+                        <input class="form-control text-center" type="text" id="nim" required="" placeholder="Masukkan NIM Anda">
                         <br>
                         <div class="form-group text-center">
                             <div class="radio-list">
                                 <label class="radio-inline p-0">
                                     <div class="radio radio-info">
-                                        <input type="radio" name="status" id="radio1" value="masuk" checked="true">
+                                        <input type="radio" id="status" name="rstat" value="masuk" checked="true">
                                         <label for="radio1">Masuk</label>
                                     </div>
                                 </label>
                                 <label class="radio-inline">
                                     <div class="radio radio-info">
-                                        <input type="radio" name="status" id="radio2" value="keluar">
+                                        <input type="radio" id="status" name="rstat" value="keluar" >
                                         <label for="radio2">Keluar</label>
                                     </div>
                                 </label>
@@ -75,12 +65,11 @@
                         <br>
                         <div class="form-group text-center">
                             <div class="col-xs-12">
-                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light "
-                                        type="submit">Checkpoint
+                                <button class="btn btn-info btn-lg btn-block text-uppercase waves-effect waves-light " id="submit" >Checkpoint
                                 </button>
                             </div>
                         </div>
-            </form>
+            </div>
         </div>
     </div>
 </section>
@@ -101,5 +90,34 @@
 <script src="<?php echo base_url(); ?>assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/bower_components/sweetalert/jquery.sweet-alert.custom.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#submit").click(function(){
+            var nim = $("#nim").val();
+            var status = $("#status:checked").val();
+// Returns successful data submission message when the entered information is stored in database.
+            var dataString = 'nim='+ nim + '&status='+ status;
+            if(nim==''||status=='')
+            {
+                sweetAlert("Error","Data belum diisi","error");
+            }
+            else
+            {
+// AJAX Code To Submit Form.
+                $.ajax({
+                    type: "POST",
+                    url: "checkpoint/check",
+                    data: dataString,
+                    cache: false,
+                    success: function(result){
+                        var obj = JSON.parse(result);
+                        swal(obj.judul, obj.pesan, obj.tipe);
+                    }
+                });
+            }
+            return false;
+        });
+    });
+</script>
 </body>
 </html>

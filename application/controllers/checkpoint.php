@@ -11,22 +11,34 @@ class Checkpoint extends CI_Controller
 
     public function check()
     {
-        $this->form_validation->set_rules('nim', 'NIM', 'trim|required|min_length[10]|max_length[10]');
+        $this->form_validation->set_rules('nim', 'NIM', 'trim|required|numeric|min_length[10]|max_length[10]');
         if ($this->form_validation->run() == FALSE) {
-            $this->session->set_flashdata('error', validation_errors());
-            redirect('checkpoint');
+            $data = array(
+                'judul' => 'Format Salah!',
+                'tipe' => 'error',
+                'pesan' => 'NIM harus berisikan angka dan panjangnya 10 karakter!'
+            );
+            echo json_encode($data);
         } else {
             $this->load->model('transaksi_model');
             $nim = $this->input->post('nim');
             $status = $this->input->post('status');
             $status = strtolower($status);
             $insert = $this->transaksi_model->insert($nim,$status);
-        	if ($insert == TRUE) {
-                $this->session->set_flashdata('success', 'BERHASIL HORE!!');
-                redirect('checkpoint');
+        	if ($insert != FALSE) {
+        	    $data = array(
+        	      'judul' => 'Berhasil!',
+        	      'tipe' => 'success',
+        	      'pesan' => $insert['nim']. "\n" . $insert['nama'] . "\n" . $insert['jurusan'] . "\nKamar " . $insert['kamar'] . "\nSilahkan ". $status
+                );
+                echo json_encode($data);
             } else {
-                $this->session->set_flashdata('error', 'NIM anda tidak terdaftar');
-                redirect('checkpoint');
+                $data = array(
+                    'judul' => 'Gagal!',
+                    'tipe' => 'error',
+                    'judul' => $nim." gagal " . $status . " mohon periksa NIM atau koneksi anda"
+                );
+                echo json_encode($data);
             }
         }
     }

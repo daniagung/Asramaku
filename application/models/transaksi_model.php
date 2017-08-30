@@ -23,9 +23,15 @@ class Transaksi_model extends CI_Model {
 				'status' => $status
 				);
             $this->db->insert('transaksi', $data);
-            if ($this->db->affected_rows() > 0)
-                return TRUE;
-            else
+            if ($this->db->affected_rows() > 0){
+                $data = array(
+                  'nim' => $datamhs[0]->nim,
+                    'nama' => $datamhs[0]->nama,
+                    'jurusan' => $datamhs[0]->jurusan,
+                    'kamar' => $datamhs[0]->nomor
+                );
+                return $data;
+            } else
                 return FALSE;
 		}
 		else
@@ -46,7 +52,7 @@ class Transaksi_model extends CI_Model {
 	}
 
 	//Delete one item
-	public function delete( $id = NULL )
+	public function delete($data)
 	{
 		$this->db->where('id', $data['id']);
 		$this->db->delete('transaksi');

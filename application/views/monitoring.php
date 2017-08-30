@@ -173,6 +173,3 @@
         ]
     });
 </script>
-<!--Style Switcher -->
-<script src="<?php echo base_url(); ?>assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
-

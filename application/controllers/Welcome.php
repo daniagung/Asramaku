@@ -32,4 +32,8 @@ class Welcome extends CI_Controller {
 			redirect('login/index','refresh');
 		}
 	}
+	public function logout(){
+	    $this->session->sess_destroy();
+	    redirect('login/index','refresh');
+    }
 }
