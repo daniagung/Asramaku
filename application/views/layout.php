@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/plugins/images/favicon.png">
-    <title>My Dorm</title>
+    <title>Telkom University Dormitory</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
@@ -60,14 +60,14 @@
                         <!--This is dark logo icon--><img
                                 src="<?php echo base_url(); ?>assets/plugins/images/admin-logo.png" alt="home"
                                 class="dark-logo"/><!--This is light logo icon--><img
-                                src="<?php echo base_url(); ?>assets/plugins/images/admin-logo-dark.png" alt="home"
+                                src="<?php echo base_url(); ?>assets/Images/logokecil.png" alt="home"
                                 class="light-logo"/>
                     </b>
                     <!-- Logo text image you can use text also --><span class="hidden-xs">
                         <!--This is dark logo text--><img
                                 src="<?php echo base_url(); ?>assets/plugins/images/admin-text.png" alt="home"
                                 class="dark-logo"/><!--This is light logo text--><img
-                                src="<?php echo base_url(); ?>assets/plugins/images/admin-text-dark.png" alt="home"
+                                src="<?php echo base_url(); ?>assets/Images/tulisanlogo.png" alt="home"
                                 class="light-logo"/>
                      </span> </a>
             </div>
@@ -97,17 +97,17 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle profile-pic" data-toggle="dropdown" href="#"> <img
                                 src="<?php echo base_url(); ?>assets/plugins/images/users/varun.jpg" alt="user-img"
-                                width="36" class="img-circle"><b class="hidden-xs">Steave</b><span class="caret"></span>
+                                width="36" class="img-circle"><b class="hidden-xs">Admin</b><span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-user animated flipInY">
                         <li>
                             <div class="dw-user-box">
                                 <div class="u-img"><img
-                                            src="<?php echo base_url(); ?>assets/plugins/images/users/varun.jpg"
+                                            src="<?php echo base_url(); ?>assets/Images/logoonly.png"
                                             alt="user"/></div>
                                 <div class="u-text">
-                                    <h4>Steave Jobs</h4>
-                                    <p class="text-muted">varun@gmail.com</p><a href="profile.html"
+                                    <h4>Admin</h4>
+                                    <p class="text-muted">admin@dormitory.telkomuniversity.ac.id</p><a href="#"
                                                                                 class="btn btn-rounded btn-danger btn-sm">View
                                         Profile</a></div>
                             </div>
@@ -137,11 +137,17 @@
                                                                                 data-icon="v"></i> <span
                                 class="hide-menu"> Dashboard <span class="fa arrow"></span></a>
                 </li>
-                <li><a href="checkpoint" class="waves-effect"><i class="mdi mdi-table fa-fw"></i> <span
+                <li><a href="checkpoint" class="waves-effect"><i class="mdi mdi-table fa-check-circle-o"></i> <span
                                 class="hide-menu">Checkpoint<span class="fa arrow"></span></a>
                 </li>
-                <li><a href="penghuni" class="waves-effect"><i class="mdi mdi-chart-bar fa-fw"></i> <span
+                <li><a href="penghuni" class="waves-effect"><i class="mdi mdi-chart-bar fa-user"></i> <span
                                 class="hide-menu">Penguni<span class="fa arrow"></span></span></a>
+                </li>
+                <li><a href="data" class="waves-effect"><i class="mdi mdi-chart-bar fa-database"></i> <span
+                                class="hide-menu">Data<span class="fa arrow"></span></span></a>
+                </li>
+                <li><a href="pengaturan" class="waves-effect"><i class="mdi mdi-chart-bar  fa-cogs"></i> <span
+                                class="hide-menu">Pengaturan<span class="fa arrow"></span></span></a>
                 </li>
             </ul>
         </div>

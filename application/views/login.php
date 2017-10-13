@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/plugins/images/favicon.png">
-    <title>Ample Admin Template - The Ultimate Multipurpose admin template</title>
+    <title>Login | Telkom University Dormitory</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- animation CSS -->
@@ -33,7 +33,7 @@
     <div class="lg-info-panel">
         <div class="inner-panel">
             <a href="javascript:void(0)" class="p-20 di"><img
-                        src="<?php echo base_url(); ?>assets/plugins/images/admin-logo.png"></a>
+                        src="<?php echo base_url(); ?>assets/Images/logoputihbersih.png"></a>
             <div class="lg-content">
                 <h2>Welcome to</h2>
                 <h2>Telkom University Dormitory Information System</h2>

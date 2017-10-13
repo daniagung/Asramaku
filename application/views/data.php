@@ -14,14 +14,13 @@
     <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="<?php echo base_url(); ?>assets/css/colors/megna-dark.css" id="theme" rel="stylesheet">
-    <title>Monitoring | Telkom University Dormitory</title>
 
 
     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
         <h4 class="page-title">Monitoring</h4></div>
     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
         <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i
-                    class="ti-settings text-white"></i></button>
+                class="ti-settings text-white"></i></button>
         <ol class="breadcrumb">
             <li><a href="#">Dashboard</a>/Monitoring</li>
         </ol>

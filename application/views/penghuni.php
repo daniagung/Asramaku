@@ -20,7 +20,7 @@
         <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i
                     class="ti-settings text-white"></i></button>
         <ol class="breadcrumb">
-            <li><a href="#">Dashboard</a>/Penghuni</li>
+            <li><a href="monitoring">Dashboard</a>/Penghuni</li>
         </ol>
     </div>
 
@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="white-box">
-            <h3 class="box-title">Penghuni Asrama</h3>
+            <h3 class="box-title">Daftar Penghuni Asrama</h3>
             <td colspan="2">
                 <button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
                         data-target="#add-contact">Tambah Penghuni

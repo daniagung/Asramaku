@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/plugins/images/favicon.png">
-    <title>Telkom University Dormitory</title>
+    <title>Checkpoint | Telkom University Dormitory</title>
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url(); ?>assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
@@ -37,7 +37,7 @@
                 <div class="form-group">
                     <div class="col-xs-12 text-center">
                         <div class="user-thumb text-center"><img alt="thumbnail" class="img-circle" width="100"
-                                                                 src="<?php echo base_url(); ?>assets/plugins/images/users/genu.jpg">
+                                                                 src="<?php echo base_url(); ?>assets/Images/logobulat.png">
                             <h3>Telkom University Dormitory </h3>
                         </div>
                     </div>
