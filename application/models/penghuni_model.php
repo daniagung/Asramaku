@@ -1,56 +1,61 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Penghuni_model extends CI_Model {
+class Penghuni_model extends CI_Model
+{
 
-	public function get()
-	{
-		$query = $this->db->get('kamarmhs');
-		return $query->result();
-	}	
-	public function add($array){
-		$this->db->where('nomor', $array['nokamar']);
-		$query = $this->db->get('kamar');
-        $this->load->model('mahasiswa_model');
-        $this->load->model('kamar_model');
-		if ($query->num_rows() == 1){
-			$data = array(
-				'nim' => $array['nim'],
-				'nama' => $array['nama'],
-				'jurusan' => $array['jurusan'],
-				'nohp' => $array['nohp'],
-				'line' => $array['idline']
-				);
-			$result = $this->mahasiswa_model->add($data);
-			if ($this->db->rows_affected() > 0){
-				return TRUE;
-			}
-			else
-			{
-				return FALSE;
-			}
-		}
-		else
-		{
+    public function get()
+    {
+        $query = $this->db->get('kamarmhs');
+        return $query->result();
+    }
 
-            $data = array(
-                'nim' => $array['nim'],
-                'nama' => $array['nama'],
-                'jurusan' => $array['jurusan'],
-                'nohp' => $array['nohp'],
-                'line' => $array['idline']
+    public function getMhs($id)
+    {
+        $this->db->where('nim', $id);
+        $query = $this->db->get('kamarmhs');
+        return $query->result()[0];
+    }
 
-            );
-            $result = $this->mahasiswa_model->add($data);
-            if ($this->db->affected_rows() > 0){
-                return TRUE;
-            }
-            else
-            {
-                return FALSE;
-            }
-		}
-	}
+    public function add($array)
+    {
+        $data = array(
+            'nim' => $array['nim'],
+            'nama' => $array['nama'],
+            'jurusan' => $array['jurusan'],
+            'nohp' => $array['nohp'],
+            'line' => $array['idline'],
+            'id_kamar' => $array['id_kamar']
+        );
+        $this->mahasiswa_model->add($data);
+        if ($this->db->affected_rows() > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function update($array)
+    {
+
+        $this->mahasiswa_model->update($array);
+        if ($this->db->affected_rows() > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    public function hapus($nim)
+    {
+        $this->db->where('nim', $nim);
+        $this->db->delete('mahasiswa');
+        if ($this->db->affected_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+
+
+    }
 
 }
 

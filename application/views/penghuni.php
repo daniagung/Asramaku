@@ -34,6 +34,7 @@
                 <button type="button" class="btn btn-info btn-rounded" data-toggle="modal"
                         data-target="#add-contact">Tambah Penghuni
                 </button>
+                <div class="panel-action"><?php echo $this->session->flashdata('error'); ?></div>
             </td>
             <div class="scrollable">
                 <div class="table-responsive">
@@ -45,8 +46,6 @@
                             <th>Nama</th>
                             <th>Kamar</th>
                             <th>Jurusan</th>
-                            <th>Nomor HP</th>
-                            <th>ID LINE</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -60,9 +59,8 @@
                             echo "<td>".$obj->nama."</td>";
                             echo "<td>".$obj->nomor."</td>";
                             echo "<td>".$obj->jurusan."</td>";
-                            echo "<td>".$obj->nohp."</td>";
-                            echo "<td>".$obj->line."</td>";
-                            echo "<td> <button type=\"button\" name=\"$obj->nim\" class=\"btn btn-info btn-sm\">Edit</button> <button type=\"button\" class=\"btn btn-danger btn-sm\">Hapus</button></td>";
+                            echo "<td> <a href='penghuni/editpenghuni/$obj->nim' type='' class='btn btn-info btn-sm'>Edit</a>";
+                            echo " <button type=\"button\" class=\"btn btn-danger btn-sm\" onclick=\"hapus($obj->nim)\">Hapus</button></td>";
                         echo "</tr>";
                         $i++;
                         }
@@ -80,7 +78,8 @@
                                                 ×
                                             </button>
                                             <h4 class="modal-title" id="myModalLabel">Tambah Penghuni</h4></div>
-                                        <form class="form-horizontal form-material" action="tambah" method="POST">
+                                        <form class="form-horizontal form-material" action="penghuni/tambah"
+                                              method="POST">
                                         <div class="modal-body">
                                                 <div class="form-group">
                                                     <div class="col-md-12 m-b-20">
@@ -90,7 +89,18 @@
                                                         <input type="text" class="form-control" placeholder="Nama" name="nama" required="true">
                                                     </div>
                                                     <div class="col-md-12 m-b-20">
-                                                        <input type="text" class="form-control" placeholder="Jurusan" name="jurusan" required="true">
+                                                        <!--                                                        <input type="text" class="form-control" placeholder="Jurusan" name="jurusan" required="true">-->
+
+                                                        <select class="form-control" name="jurusan">
+
+                                                            <?php
+                                                            //                                                            print_r($mahasiswa);
+                                                            foreach ($jurusan as $obj) {
+                                                                $nama_jurusan = $obj->nama_jurusan;
+                                                                echo "<option value='$nama_jurusan'>$nama_jurusan</option>";
+                                                            }
+                                                            ?>
+                                                        </select>
                                                     </div>
                                                     <div class="col-md-12 m-b-20">
                                                         <input type="text" class="form-control" placeholder="Nomor Kamar" name="nokamar" required="true">
@@ -186,7 +196,21 @@
 
         ]
     });
+
 </script>
+
+<script>
+    function hapus(nim) {
+        var r = confirm("Anda yakin mau menghapus " + nim + "?");
+        if (r == true) {
+            window.location.href = "<?php echo base_url();?>penghuni/hapus/" + nim;
+        }
+    }
+
+</script>
+<script src="<?php echo base_url(); ?>assets/plugins/bower_components/sweetalert/sweetalert.min.js"></script>
+<link href="<?php echo base_url(); ?>assets/plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet"
+      type="text/css">
 <!--Style Switcher -->
 <script src="<?php echo base_url(); ?>assets/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 

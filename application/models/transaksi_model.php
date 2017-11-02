@@ -12,32 +12,30 @@ class Transaksi_model extends CI_Model {
 		return $query->result();
 	}
 	public function insert($nim,$status){
-		$this->db->where('nim', $nim);
+        $this->load->model('kamar_model');
+        $this->db->where('nim', $nim);
 		$getmhs = $this->db->get('kamarmhs');
-		if ($getmhs->num_rows() == 1){
-			$datamhs = $getmhs->result();
 
-			$data = array(
-				'id_kamar' => $datamhs[0]->id_kamar,
-				'nim' => $datamhs[0]->nim,
-				'status' => $status
-				);
+        if ($getmhs->num_rows() == 1) {
+            $datamhs = $getmhs->result();
+//            $cekkamar = $this->kamar_model->checkAvailable($datamhs[0]->id_kamar);
+            $data = array(
+                'id_kamar' => $datamhs[0]->id_kamar,
+                'nim' => $datamhs[0]->nim,
+                'status' => $status
+            );
             $this->db->insert('transaksi', $data);
-            if ($this->db->affected_rows() > 0){
+            if ($this->db->affected_rows() > 0) {
                 $data = array(
-                  'nim' => $datamhs[0]->nim,
+                    'nim' => $datamhs[0]->nim,
                     'nama' => $datamhs[0]->nama,
                     'jurusan' => $datamhs[0]->jurusan,
                     'kamar' => $datamhs[0]->nomor
                 );
                 return $data;
-            } else
-                return FALSE;
-		}
-		else
-		{
-			return FALSE;
-		}
+            }
+        }
+        return FALSE;
 	}
 
 	//Update one item

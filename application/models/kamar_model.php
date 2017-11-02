@@ -17,6 +17,17 @@ class Kamar_model extends CI_Model {
 		return $query->result();
 	}
 
+    public function checkKamar($nomor)
+    {
+        $this->db->where('nomor', $nomor);
+        $query = $this->db->get('kamar');
+        if ($query->num_rows() == 1) {
+            return $query->result()[0]->id;
+        } else {
+            return 0;
+        }
+    }
+
 	// Add a new item
 	public function add($data)
 	{
@@ -28,17 +39,39 @@ class Kamar_model extends CI_Model {
 	public function update($data)
 	{
 		$this->db->where('id', $data['id']);
-		$result = $this->db->update('kamar', $data);
-		return $result;
+        $this->db->update('kamar', $data);
+        return $this->db->affected_rows() > 0;
 	}
 
 	//Delete one item
 	public function delete( $id = NULL )
 	{
-		$this->db->where('id', $data['id']);
-		$result = $this->db->delete('kamar', $data);
+        $this->db->where('id', $id);
+        $result = $this->db->delete('kamar');
 		return $result;
 	}
+
+    public function checkAvailable($id)
+    {
+        $this->db->where('id', $id);
+        $query = $this->db->get('kamar')->result();
+        if ($query[0]->status_kunci == 1) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+//        return $query[0]->status_kunci == 0;
+    }
+
+    public function updateKunci($id, $status)
+    {
+        $data = array(
+            'status_kunci' => $status
+        );
+        $this->db->where('id', $id);
+        $this->db->update('kamar', $data);
+        return $this->db->affected_rows() > 0;
+    }
 }
 
 /* End of file kamar_model.php */
